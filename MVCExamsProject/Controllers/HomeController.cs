@@ -139,7 +139,7 @@ namespace MVCExamsProject.Controllers
         {
             try
             {
-                UserID = "0";
+                UserID = "";
                 if (Session["id"] != null)
                 {
                     UserID = Session["id"].ToString();

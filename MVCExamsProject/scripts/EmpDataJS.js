@@ -102,6 +102,30 @@ var InsertupdateExp = function () {
     });
 };
 
+var GetbyID = function () {
+    $("#tblclient").on('click', '#Updatecrd', function () {
+        // get the current row
+        var currentRow = $(this).closest("tr");
+
+        var col1 = currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+        var col2 = currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+        var col3 = currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+        var col4 = currentRow.find("td:eq(3)").text();
+        var col5 = currentRow.find("td:eq(4)").text();
+        var col6 = currentRow.find("td:eq(5)").text();
+        var data = col1 + "\n" + col2 + "\n" + col3;
+
+        document.getElementById('txtUserID').value = col1;
+        document.getElementById('txtcompany').value = col2;
+        document.getElementById('txtDesignationE').value = col3;
+        $("#txtJD").val(col4);
+        $("#txtRD").val(col5);
+        document.getElementById('txtRL').value = col6;
+
+        //alert(data);
+    });
+};
+
 //var city = function (cityid) {
 //    $.ajax({
 //        type: 'GET',
@@ -209,6 +233,16 @@ var validateExp = function () {
         document.getElementById('txtcompany').focus();
         return false;
     }
+    InsertupdateExp();
+};
+
+var validateReg = function () {
+    if (document.getElementById('txtUserName').value == "") {
+        alert("Please Enter Name");
+        document.getElementById('txtUserName').focus();
+        return false;
+    }
+    updateonsubmit();
 };
 
 
@@ -218,7 +252,7 @@ var cleartxtmainbox = function () {
    document.getElementById('ddDesignation').value = "";
    document.getElementById('ddCity').value = "";
    document.getElementById('txtDOB').value = "";
-   $(input[name = "exampleRadios"]).prop('checked', false);
+   $('input[name = "exampleRadios"]').prop('checked', false);
     //var Gender = $('.form-check-input :checked').text();
    $('input[name="exampleRadios"]').text("");
     //var Gender = document.getElementById("txtGender").value;
@@ -262,7 +296,7 @@ var updateonsubmit = function () {
         success: function (response) {
             alert("Your Employee ID is:- "+response);
             document.getElementById('txtUserID').value = response;
-            loadData(response);
+            location.reload();
         },
         error: function (response) {
 

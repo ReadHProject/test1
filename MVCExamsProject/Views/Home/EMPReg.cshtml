@@ -39,13 +39,13 @@
                             <div class="col-4 col-sm-6">
                                 <div class="form-group">
                                     <label>Joining Date</label>
-                                    <input type="text" class="form-control" id="txtJD" placeholder="Enter Joining Date" required/>
+                                    <input type="date" class="form-control" id="txtJD" placeholder="Enter Joining Date" required/>
                                 </div>
                             </div>
                             <div class="col-4 col-sm-6">
                                 <div class="form-group">
                                     <label>Relieving Date</label>
-                                    <input type="text" class="form-control" id="txtRD" placeholder="Enter Relieving Date" required/>
+                                    <input type="date" class="form-control" id="txtRD" placeholder="Enter Relieving Date" required/>
                                 </div>
                             </div>
                             <div class="col-4 col-sm-6">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="InsertupdateExp()" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="validateExp()" class="btn btn-primary">Submit</button>
                 <button type="button" onclick="cleartxtbox()" class="btn btn-secondary clr" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="col-4 col-sm-6">
-                <button type="button" onclick="updateonsubmit()" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="validateReg()" class="btn btn-primary">Submit</button>
                 <button type="button" onclick="cleartxtmainbox()" class="btn btn-secondary clr" data-dismiss="modal">Clear</button>
             </div>
         </div>
