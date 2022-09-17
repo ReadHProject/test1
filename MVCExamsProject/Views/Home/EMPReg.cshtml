@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "EMPReg";
+}
+
+<h2>EMPReg</h2>
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-left:-315px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Employee Details</h5>
+                <button type="button" class="close clr" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="hidden" class="form-control" id="txtUserID" readonly />
+                            <div class="col-4 col-sm-6">
+                                <div class="form-group">
+                                    <label>Company Name</label>
+                                    <input type="text" class="form-control" id="txtcompany" placeholder="Enter Company Name" required />
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-6">
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" class="form-control" id="txtDesignationE" placeholder="Enter Designation" required/>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-6">
+                                <div class="form-group">
+                                    <label>Joining Date</label>
+                                    <input type="text" class="form-control" id="txtJD" placeholder="Enter Joining Date" required/>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-6">
+                                <div class="form-group">
+                                    <label>Relieving Date</label>
+                                    <input type="text" class="form-control" id="txtRD" placeholder="Enter Relieving Date" required/>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-6">
+                                <div class="form-group">
+                                    <label>Reason of Leaving</label>
+                                    <input type="text" class="form-control" id="txtRL" placeholder="Enter Reason of Leaving" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="InsertupdateExp()" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="cleartxtbox()" class="btn btn-secondary clr" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="hidden" class="form-control" id="txtUserID" readonly />
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="txtUserName" placeholder="Enter Name" />
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>Designation</label>
+                    <select id="ddDesignation" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>City</label>
+                    <select id="ddCity" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>DOB</label>
+                    <input type="date" class="form-control" id="txtDOB" placeholder="Enter Email" />
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                    <label for="gen">Gender</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="rbmale" value="Male">
+                    <label class="form-check-label" for="exampleRadios1">
+                        Male
+                    </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="rbfemale" value="Female">
+                    <label class="form-check-label" for="exampleRadios1">
+                        Female
+                    </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="rbothers" value="Others">
+                    <label class="form-check-label" for="exampleRadios1">
+                        Others
+                    </label>
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-control" id="txtAddress" placeholder="Enter Address" />
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>Mob No.</label>
+                    <input type="text" class="form-control" id="txtMob" placeholder="Enter MobNo" />
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" id="txtEmail" placeholder="Enter Email" />
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" name="Ispgcheck" type="checkbox" value="Ispgcheck" id="Ispg">
+                        <label class="form-check-label" for="defaultCheck1">
+                            IsPG
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-6">
+                <button type="button" onclick="updateonsubmit()" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="cleartxtmainbox()" class="btn btn-secondary clr" data-dismiss="modal">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <button data-toggle="modal" data-target="#staticBackdrop" class="btn btn-primary" id="addRow">Add Experience</button>
+
+            <table id="tblclient" class="table table-striped table-bordered dt-responsive nowrap" width="100%">
+                <thead>
+                    <tr>
+                        <td>Employee ID</td>
+                        <td>Company Name</td>
+                        <td>Designation</td>
+                        <td>Joining Date</td>
+                        <td>Relieving Date</td>
+                        <td>Reason of Leaving</td>
+                        <td>Actions</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="~/scripts/EmpDataJS.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+}
+
