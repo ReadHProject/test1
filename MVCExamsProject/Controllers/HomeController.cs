@@ -139,31 +139,59 @@ namespace MVCExamsProject.Controllers
         {
             try
             {
-                UserID = "";
-                if (Session["id"] != null)
+                if (UserID == "")
                 {
-                    UserID = Session["id"].ToString();
-                }
-                SqlParameter[] param1 = new SqlParameter[8];
-                param1[0] = new SqlParameter("@EmpID", UserID);
-                param1[1] = new SqlParameter("@CompanyName", CompanyName);
-                param1[2] = new SqlParameter("@Designation", Designation);
-                param1[3] = new SqlParameter("@JoiningDate", JoiningDate);
-                param1[4] = new SqlParameter("@RelievingDate", RelievingDate);
-                param1[5] = new SqlParameter("@ReasonOfLeaving", ReasonOfLeaving);
-                param1[6] = new SqlParameter("@Rout", 1);
-                param1[7] = new SqlParameter("@Action", "InsertEmpExp");
-                int sdr = DBObj.ExecuteNonQuerySP("SP_EmployeeDetails", param1);
-                if (sdr > 0)
-                {
-                    ViewBag.Mg = "Record Inserted Successfully!!";
-                    return Json(ViewBag.Mg, JsonRequestBehavior.AllowGet);
+
+                    UserID = "";
+                    if (Session["id"] != null)
+                    {
+                        UserID = Session["id"].ToString();
+                    }
+                    SqlParameter[] param1 = new SqlParameter[8];
+                    param1[0] = new SqlParameter("@EmpID", UserID);
+                    param1[1] = new SqlParameter("@CompanyName", CompanyName);
+                    param1[2] = new SqlParameter("@Designation", Designation);
+                    param1[3] = new SqlParameter("@JoiningDate", JoiningDate);
+                    param1[4] = new SqlParameter("@RelievingDate", RelievingDate);
+                    param1[5] = new SqlParameter("@ReasonOfLeaving", ReasonOfLeaving);
+                    param1[6] = new SqlParameter("@Rout", 1);
+                    param1[7] = new SqlParameter("@Action", "InsertEmpExp");
+                    int sdr = DBObj.ExecuteNonQuerySP("SP_EmployeeDetails", param1);
+                    if (sdr > 0)
+                    {
+                        ViewBag.Mg = "Record Inserted Successfully!!";
+                        return Json(ViewBag.Mg, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "Error on Insert!!";
+                        return Json(ViewBag.Msg, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    ViewBag.Msg = "Error on Insert!!";
-                    return Json(ViewBag.Msg, JsonRequestBehavior.AllowGet);
+                    SqlParameter[] param1 = new SqlParameter[8];
+                    param1[0] = new SqlParameter("@EmpID", UserID);
+                    param1[1] = new SqlParameter("@CompanyName", CompanyName);
+                    param1[2] = new SqlParameter("@Designation", Designation);
+                    param1[3] = new SqlParameter("@JoiningDate", JoiningDate);
+                    param1[4] = new SqlParameter("@RelievingDate", RelievingDate);
+                    param1[5] = new SqlParameter("@ReasonOfLeaving", ReasonOfLeaving);
+                    param1[6] = new SqlParameter("@Rout", 1);
+                    param1[7] = new SqlParameter("@Action", "InsertEmpExp");
+                    int sdr = DBObj.ExecuteNonQuerySP("SP_EmployeeDetails", param1);
+                    if (sdr > 0)
+                    {
+                        ViewBag.Mg = "Record Updated Successfully!!";
+                        return Json(ViewBag.Mg, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "Error on Insert!!";
+                        return Json(ViewBag.Msg, JsonRequestBehavior.AllowGet);
+                    }
                 }
+
 
             }
             catch (Exception ex)

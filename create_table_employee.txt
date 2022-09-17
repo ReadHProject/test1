@@ -1,0 +1,15 @@
+UserID	int	no	4	10   	0    	no	(n/a)	(n/a)	NULL
+UserName	nvarchar	no	60	     	     	no	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+Email	nvarchar	no	100	     	     	no	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+CityID	int	no	4	10   	0    	no	(n/a)	(n/a)	NULL
+Gender	varchar	no	20	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+Designation	varchar	no	50	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+MobNo	varchar	no	50	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+DOB	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+Address	nvarchar	no	300	     	     	yes	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+UploadFile	nvarchar	no	400	     	     	yes	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+IsPG	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+
+
+
+PRIMARY KEY (clustered)	PK__tblEmplo__1788CCAC04BD791B	(n/a)	(n/a)	(n/a)	(n/a)	UserID

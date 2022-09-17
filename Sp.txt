@@ -1,0 +1,80 @@
+USE [Client_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_EmployeeDetails]    Script Date: 09/17/2022 11:14:46 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[SP_EmployeeDetails]
+(
+@Action nvarchar(25),
+@UserID int=0,
+@UserName nvarchar(30)=null,
+@Email nvarchar(50)=null,
+@CityID int=0,
+@Gender varchar(20)=null,
+@Designation varchar(40)=null,
+@MobNo varchar(50)=null,
+@DOB varchar(10)=null,
+@Address nvarchar(150)=null,
+@UploadFile nvarchar(200)=null,
+@IsPG int=0,
+@EmpID int=0,
+@CompanyName nvarchar(50)=null,
+@JoiningDate nvarchar(10)=null,
+@RelievingDate nvarchar(10)=null,
+@ReasonOfLeaving nvarchar(200)=null,
+@Rout int=0 out
+)
+as 
+BEGIN
+
+ --if @Action='GetAllEmp'
+	-- select UserID,UserName,Salary,Email,e.passcode,isnull(c.CityName,'')as CityName ,e.Gender,isnull(s.StateName,'') as StateName ,e.CityID,e.StateID,type from 
+	--((tblEmployeeDetails E left join tblCity C on E.CityID=C.CityID) left join tblState s on e.StateID=s.StateID) where Type<>'Admin'
+
+ --if @Action='GetSpecificEmp'
+	--select UserID,UserName,Email,c.CityName,e.Gender,s.StateName,e.CityID,e.StateID from 
+	--((tblEmployeeDetails E left join tblCity C on E.CityID=C.CityID) left join tblState s on e.StateID=s.StateID) where UserID=@UserID
+
+	 if @Action='GetSpecificEmp'
+	select EmpID,CompanyName,JoiningDate,p.Designation,RelievingDate,ReasonOfLeaving from 
+	PreviousExp P inner join tblEmployeeDetails E on E.UserID = p.EmpID Where UserID=@UserID
+
+	if @Action='InsertEmpForm'
+
+		Begin
+			insert into tblEmployeeDetails(UserName,Email,CityID,Gender,Designation,MobNo,DOB,Address,UploadFile,IsPG) 
+			values(@UserName,@Email,@CityID,@Gender,@Designation,@MobNo,@DOB,@Address,@UploadFile,@IsPG)
+			select SCOPE_IDENTITY() as [Regid]
+		End
+
+	if @Action='InsertEmpExp'
+	if exists(select * from PreviousExp where EmpID=@UserID)
+	Begin
+	update PreviousExp set EmpID=@EmpID,CompanyName=@CompanyName,Designation=@Designation,
+	JoiningDate=@JoiningDate,RelievingDate=@RelievingDate,ReasonOfLeaving=@ReasonOfLeaving where EmpID=@UserID
+	End
+	Else
+	Begin
+		insert into PreviousExp(EmpID,CompanyName,Designation,JoiningDate,RelievingDate,ReasonOfLeaving) 
+		values(@EmpID,@CompanyName,@Designation,@JoiningDate,@RelievingDate,@ReasonOfLeaving)
+	End
+
+	if @Action='UpdateEmp'
+		Begin
+			Update tblEmployeeDetails set UserName=@UserName,Email=@Email,CityID=@CityID,
+			Gender=@Gender,Designation=@Designation,MobNo=@MobNo,DOB=@DOB,Address=@Address,
+			UploadFile=@UploadFile,IsPG=@IsPG where UserName=@UserName
+		End
+	Else
+
+ if @Action='GetGesignation'
+	select * from tblDesignation
+
+if @Action='GetCity'
+	select * from tblCity 
+
+	if @Action='DeleteData'
+	delete from tblEmployeeDetails where UserID=@UserID
+END
